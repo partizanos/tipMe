@@ -14,9 +14,19 @@
 
 <script>
 function myFunction() {
-    var x = document.getElementById("mySearch").form.id;
-    document.getElementById("demo").innerHTML = x;
+
+    var x = document.getElementById("mySearch").value;
+	var r = new XMLHttpRequest(); 
+	r.open("GET", "db_req", true);
+	r.onreadystatechange = function () {
+		if (r.readyState != 4 || r.status != 200) return; 
+		(r.responseText);
+	    document.getElementById("demo").innerHTML = r.responseText;
+	};
+	alert(x);
+	r.send("");
 }
+
 </script>
 
 </body>
