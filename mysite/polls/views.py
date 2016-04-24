@@ -28,5 +28,4 @@ def db_req(request):
 
 #Establish a connection with mongo instance.
 # conn = Connection(server,port)
-# user = authenticate(username='yelp', password='myyelp')
 # assert isinstance(user, mongoengine.django.auth.User)
