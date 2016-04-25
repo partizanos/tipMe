@@ -17,14 +17,14 @@ function myFunction() {
 
     var x = document.getElementById("mySearch").value;
 	var r = new XMLHttpRequest(); 
-	r.open("GET", "db_req", true);
+	r.open("GET", "db_req?value="+x, true);
 	r.onreadystatechange = function () {
 		if (r.readyState != 4 || r.status != 200) return; 
 		(r.responseText);
 	    document.getElementById("demo").innerHTML = r.responseText;
 	};
-	alert(x);
-	r.send("");
+	// alert(x);
+	r.send({"value":x});
 }
 
 </script>
