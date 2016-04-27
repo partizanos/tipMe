@@ -24,7 +24,21 @@ def db_req(request):
         value = request.GET.get('value').encode('utf8')
         # collection = db['tip']
         # return HttpResponse(request.body)
-        return HttpResponse(value)
+        # db.ptip.find( { nouns: { $elemMatch: { "name" : "bakery" } } } )
+        totalPtips = []
+        i = 0
+        string = {"nouns": {"$elemMatch": {"name": value }}}
+        # collection.find({'nouns': {"$elemMatch": {"name": "bakery"}}})
+        # print(string)
+        result = collection.find(string)
+        for ptip in result:
+            totalPtips.append(ptip)
+            i += 1
+            if(i == 10):
+                break
+        # return HttpResponse((value, collection.find_one()))
+        return HttpResponse((value, totalPtips))
+
         # return HttpResponse(str(collection.find_one()))
     # return HttpResponse("Hello, world. You're at the polls index.")
 
