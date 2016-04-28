@@ -27,12 +27,14 @@ def db_req(request):
         # db.ptip.find( { nouns: { $elemMatch: { "name" : "bakery" } } } )
         totalPtips = []
         i = 0
-        string = {"nouns": {"$elemMatch": {"name": value }}}
+        string = {"nouns": {"$elemMatch": {"name": value}}}
         # collection.find({'nouns': {"$elemMatch": {"name": "bakery"}}})
         # print(string)
         result = collection.find(string)
         for ptip in result:
-            totalPtips.append(ptip)
+            name_query = {"business_id": ptip['bus_id']}
+            label = db.business.find(name_query)[0]['name']
+            totalPtips.append([label, ptip])
             i += 1
             if(i == 10):
                 break
