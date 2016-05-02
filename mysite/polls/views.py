@@ -5,6 +5,17 @@ from pymongo import MongoClient
 from django.template import loader
 
 
+import json
+from bson import ObjectId
+
+class JSONEncoder(json.JSONEncoder):
+    def default(self, o):
+        if isinstance(o, ObjectId):
+            return str(o)
+        return json.JSONEncoder.default(self, o)
+
+# JSONEncoder().encode(analytics)
+
 def index(request):
     # server = "localhost"
     # port = 27017
@@ -17,6 +28,8 @@ def index(request):
 
 
 def db_req(request):
+    json_data = {}
+    # json_data = json.dumps({})
     if request.method == 'GET':
         c = MongoClient()
         db = c.yelp
@@ -34,12 +47,16 @@ def db_req(request):
         for ptip in result:
             name_query = {"business_id": ptip['bus_id']}
             label = db.business.find(name_query)[0]['name']
-            totalPtips.append([label, ptip])
+            # totalPtips.append(ptip)
+            json_data[label] = ptip
+            # json_data[label.encode('utf8')] = ptip.encode('utf8')
+            # totalPtips.append([label, ptip])
             i += 1
             if(i == 10):
                 break
         # return HttpResponse((value, collection.find_one()))
-        return HttpResponse((value, totalPtips))
+
+        return HttpResponse(JSONEncoder().encode(json_data))
 
         # return HttpResponse(str(collection.find_one()))
     # return HttpResponse("Hello, world. You're at the polls index.")
