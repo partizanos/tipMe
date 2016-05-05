@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -159,4 +158,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
+#     'django.contrib.staticfiles.finders.DefaultStorageFinder',
+# STATIC_URL = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    "/home/dimitris/thesis/tipMe/mysite/polls/static/polls/",
+]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = ()
+# STATICFILES_DIRS = ()
+# STATICFILES_DIRS = (os.path.join(STATIC_ROOT, 'css/'),
+#                     os.path.join(STATIC_ROOT, 'javascript/'),
+#                     os.path.join(STATIC_ROOT, 'images/')
+#                     )
