@@ -11,13 +11,15 @@ function myFunction() {
     nodes = []
     nodes.push({
       "name": x,
-      "value": 10
+      "value": 10,
+      "text": "aspect"
     });
     for (var key in data)
       if (data.hasOwnProperty(key)) {
         nodes.push({
           "name": key,
-          "value": data[key].nouns[0].value
+          "value": data[key].nouns[0].value,
+          "text": data[key].text
         });
       }
 
@@ -47,7 +49,16 @@ function draw() {
   var width = 960,
     height = 500
 
+
+  //remove previous graph
+  var elem = document.getElementById("viz");
+  if(elem !==null){
+    elem.parentNode.removeChild(elem);
+  }
+  
+
   var svg = d3.select("body").append("svg")
+    .attr("id", 'viz')
     .attr("width", width)
     .attr("height", height);
 
@@ -112,6 +123,10 @@ function draw() {
         return d.name
       });
 
+      node.on('click', function(d) {
+              document.getElementById("demo").innerHTML = d.text;
+              // alert('aaa')
+            });
       force.on("tick", function() {link.attr("x1", function(d) {return d.source.x; })
           .attr("y1", function(d) {
             return d.source.y;
@@ -126,7 +141,7 @@ function draw() {
         node.attr("transform", function(d) {
           return "translate(" + d.x + "," + d.y + ")";
         });
-        alert(d.)
-        setTimeout(function(){ force.stop(); }, 500);
+        // alert(d.)
+        setTimeout(function(){ force.stop(); }, 1500);
       });
     }
