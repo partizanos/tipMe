@@ -164,6 +164,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     "/home/dimitris/thesis/tipMe/mysite/polls/static/polls/",
 ]
+
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # STATIC_ROOT = ()
 # STATICFILES_DIRS = ()

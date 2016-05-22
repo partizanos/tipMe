@@ -6,6 +6,7 @@
 <head>
 	<script src="//d3js.org/d3.v3.min.js"></script>
 	<script src="{% static "script.js" %}"></script>   
+	<script src="{% static "busScript.js" %}"></script>   
   <title>TipMe</title>
 </head>
 <body>
@@ -18,6 +19,17 @@
 <p>Search for a restaurant aspect you want to propose you Restaurants! </p>
 
 <button onclick="myFunction()">Try it</button>
+
+<br>
+<br>
+<br>
+<form id="myBusForm">
+  <input type="search" id="myBusSearch">
+</form>
+
+<p>Search for all the aspects of a particular business! </p>
+
+<button onclick="bussFunction()">Try it</button>
 
 <p id="demo"></p>
 <div id="graphDiv"></div>
